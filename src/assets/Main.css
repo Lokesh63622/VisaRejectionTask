@@ -1,0 +1,20 @@
+.assbtn {
+  border: 1px solid #b5c1c4;
+  color: #ffffff;
+}
+.toogleColour {
+  background-color: #1ebbd9;
+}
+#btn {
+  background: #23b1a9;
+}
+.headColour {
+  color: #10242b;
+}
+/* .input {
+  border-radius: 0px;
+} */
+
+.textSize {
+  font-size: 14px;
+}
