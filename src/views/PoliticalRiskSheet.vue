@@ -12,10 +12,11 @@
         <v-spacer></v-spacer>
         <p class="blue--text text-caption mt-3 mr-5">View Details</p>
       </div>
-     <div class="mt-6">
-        <v-btn to="/"
-          class=" pa-4 ml-0 text-subtitle-2 "
-          style="text-transform: none; "
+      <div class="mt-6">
+        <v-btn
+          to="/"
+          class="pa-4 ml-0 text-subtitle-2"
+          style="text-transform: none"
         >
           Claim Details</v-btn
         >
@@ -23,7 +24,6 @@
           outlined
           class="assbtn ml-1 white--text"
           elevation="0"
-         
           style="text-transform: none; background: #1ebbd9"
           >Assessment Sheet</v-btn
         >
@@ -44,18 +44,43 @@
       </div>
     </div>
     <div>
-      <v-data-table
-        id="tabl"
-        disable-filtering
-        disable-pagination
-        disable-sort
+<v-data-table
+        id="table"
         hide-default-footer
+        disable-sort
         :items="items"
         :headers="headers"
       >
-      <template v-slot:[`item.action`]="{ item }">
-  <v-icon small class="black--text">mdi-dots-vertical</v-icon>{{ item.text }}
-</template>
+        <template v-slot:[`item.action`]="{}">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon flat slot="activator" v-bind="attrs" v-on="on" left
+                >mdi-dots-vertical</v-icon
+              >
+            </template>
+            <v-list  v-for="link in links"
+                :key="link.text"
+              style="border:1px solid #C1C8CC;" >
+              <v-list-item
+                style="min-height: 20px; width:130px;"
+              >
+                <template
+                  v-if="link.text === 'Modify'"
+                   
+                >
+                  <v-icon class="pr-3">mdi-{{ link.icon }}</v-icon>
+                  <v-list-item-title class="teal--text">{{
+                    link.text
+                  }}</v-list-item-title>
+                </template>
+                <template v-else>
+                  <v-icon class="pr-3">mdi-{{ link.icon }}</v-icon>
+                  <v-list-item-title>{{ link.text }}</v-list-item-title>
+                </template>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </template>
       </v-data-table>
     </div>
   </div>
@@ -68,7 +93,6 @@ export default {
     return {
       items: [
         {
-         
           Settlement: "Standard",
           Claim: "Cashless to the insured",
           Transaction: "Partial Payment",
@@ -85,7 +109,6 @@ export default {
           TotalNon: "11,600",
         },
         {
-         
           Settlement: "Standard",
           Claim: "Cashless to the insured",
           Transaction: "Partial Payment",
@@ -107,103 +130,125 @@ export default {
           text: "Action",
           align: "start",
           value: "action",
-          class: "teal white--text border-left:1px solid black",
+          class: " white--text ",
           style: "",
           width: 50,
         },
         {
           text: "Settlement Type",
           value: "Settlement",
-          class: "teal white--text",
+          class: " white--text",
           width: 150,
         },
         {
           text: "Claim Payment Type",
           value: "Claim",
-          class: "teal white--text",
+          class: " white--text",
           width: 200,
         },
         {
           text: "Transaction Type",
           value: "Transaction",
-          class: "teal white--text",
+          class: " white--text",
           width: 150,
         },
         {
           text: "Disability Amount",
           value: "Disability",
-          class: "teal white--text",
+          class: " white--text",
           width: 150,
         },
         {
           text: "Deductible Amount",
           value: "Deductible",
-          class: "teal white--text",
+          class: " white--text",
           width: 150,
         },
         {
           text: "Time Deductible (In Hours)",
           value: "Time",
-          class: "teal white--text",
+          class: " white--text",
           width: 200,
         },
         {
           text: "Copay%",
           value: "Copay",
-          class: "teal white--text",
+          class: " white--text",
           width: 50,
           border: 1,
         },
         {
           text: "Per Day Maximum",
           value: "PerDay",
-          class: "teal white--text",
+          class: " white--text",
           width: 150,
         },
         {
           text: "Max no. of days Payable",
           value: "Maxno",
-          class: "teal white--text",
+          class: " white--text",
           width: 200,
         },
         {
           text: "Claimed Amount",
           value: "Claimed",
-          class: "teal white--text",
+          class: " white--text",
           width: 150,
         },
         {
           text: "Amount Payable",
           value: "Amount",
-          class: "teal white--text",
+          class: " white--text",
           width: 150,
         },
         {
           text: "Net Payable",
           value: "Net",
-          class: "teal white--text",
+          class: " white--text",
           width: 150,
         },
         {
           text: "Total Invoice Amount",
           value: "Total",
-          class: "teal white--text",
+          class: " white--text",
           width: 150,
         },
         {
           text: "Total Non Payable Amount",
           value: "TotalNon",
-          class: "teal white--text",
+          class: " white--text",
           width: 200,
         },
       ],
+    links: [
+        { icon: "eye", text: "View" },
+        { icon: "pencil-outline", text: "Modify" },
+      ],
+      offset: true,
     };
   },
 };
 </script>
 
-<style scoped>
+<style >
 #tabl.v-data-table.tbody.td {
   border: 1px solid;
+}
+
+.v-data-table-header tr{
+  background-color:#23B1A9;
+ 
+}
+.v-data-table-header tr th{
+ border:1px solid #C1C8CC;
+ font-size:14px;
+ font-weight:bold
+}
+/* .kar{
+  border:1px solid black
+} */
+.v-data-table__wrapper table tbody tr td{
+   border-left:1px solid #C1C8CC;
+   height:20px
 }
 </style>

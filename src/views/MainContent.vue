@@ -2,11 +2,11 @@
   <div>
     <div class="mt-3">
       <div class="grey d-flex lighten-3">
-        <p class="align-center font-weight-bold textSize mt-3 mx-5">
+        <p class="align-center font-weight-bold  mt-3 mx-5">
           Claim Number - 4340002739
         </p>
         <v-divider vertical class="my-2"></v-divider>
-        <b class="red--text font-weight-bold textSize darken-3 mt-3 mx-5"
+        <b class="red--text font-weight-bold darken-3 mt-3 mx-5"
           >NEW CLAIM</b
         >
         <v-spacer></v-spacer>
@@ -42,7 +42,7 @@
           <div style="border: 1px solid grey">
             <div style="background: #1ebbd9" height="30" @click="show = !show">
               <div class="d-flex align-center mx-5">
-                <b class="white--text ma-3">Basic Details</b>
+                <b class="white--text ma-3" style="font-size: 14px;">Basic Details</b>
                 <v-spacer></v-spacer
                 ><v-icon class="white--text" v-show="show"
                   >mdi-plus-box-outline</v-icon
@@ -70,7 +70,51 @@
                   </v-flex>
 
                   <v-flex class="form-group ma-3">
-                    <label class="form-label">
+                    <label class="form-label"
+                      ><b class="font-weight-bold textSize">FIR Date</b
+                      ><span class="red--text">*</span>
+                    </label>
+                    <v-menu
+                      ref="menu"
+                      v-model="menu"
+                      :close-on-content-click="false"
+                      :return-value.sync="date"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="date"
+                          placeholder="DD/MM/YYYY"
+                          class="form-control rounded-0"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                          solo
+                          dense
+                          outlined
+                        >
+                          <template v-slot:prepend-inner>
+                            <v-icon class="iconstyle"> mdi-calendar </v-icon>
+                          </template>
+                        </v-text-field>
+                      </template>
+                      <v-date-picker v-model="date" no-title scrollable>
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="menu = false">
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="$refs.menu.save(date)"
+                        >
+                          OK
+                        </v-btn>
+                      </v-date-picker>
+                    </v-menu>
+                    <!-- <label class="form-label">
                       <b class="font-weight-bold textSize">
                         Visa Application Submission Date
                       </b>
@@ -79,13 +123,18 @@
                     <template>
                       <v-text-field
                         class="input"
+                       
                         label="DD/MM/YYYY"
                         solo
                         prepend-inner-icon="mdi-calendar "
                         dense
                         outlined
-                      ></v-text-field>
-                    </template>
+                      >
+                        <template v-slot:prepend-inner>
+                          <v-icon class="iconstyle"> mdi-calendar </v-icon>
+                        </template>
+                      </v-text-field>
+                    </template> -->
                   </v-flex>
 
                   <v-flex class="form-group ma-3">
@@ -134,7 +183,6 @@
                   </v-flex>
                 </v-layout>
 
-               
                 <v-layout>
                   <v-card class="vcard rounded-0" id="card1" elevation="0">
                     <label class="subtitle-2"
@@ -143,7 +191,7 @@
                       ><span class="red--text">*</span></label
                     >
                     <v-text-field
-                       class="input"
+                      class="input"
                       solo
                       outlined
                       counter="200"
@@ -158,7 +206,7 @@
                       ><span class="red--text">*</span></label
                     >
                     <v-select
-                       class="input"
+                      class="input"
                       solo
                       outlined
                       dense
@@ -184,7 +232,7 @@
               @click="show1 = !show1"
             >
               <div class="d-flex align-center mx-5">
-                <b class="white--text ma-3">Accident Details</b>
+                <b class="white--text ma-3" style="font-size: 14px;">Accident Details</b>
                 <v-spacer></v-spacer
                 ><v-icon class="white--text" v-show="show1"
                   >mdi-plus-box-outline</v-icon
@@ -229,19 +277,25 @@
                   </v-flex>
 
                   <v-flex class="form-group mt-3">
-                    <label class="form-label"
+                    <label class="form-label ml-2"
                       ><b class="textSize">FIR Registered</b>
                       <span class="red--text">*</span>
                     </label>
 
                     <v-card
-                      class="radio-btn-card"
+                      id="card3"
+                      class="radio-btn-card ml-2 vcard rounded-0"
+                      width="220px"
                       height="40%"
                       rounded="0"
                       outlined
                       elevation="2"
                     >
-                      <v-radio-group v-model="row" row class="radio-btn-grp">
+                      <v-radio-group
+                        v-model="row"
+                        row
+                        class="radio-btn-grp pa-1 pt-2 pl-3"
+                      >
                         <v-radio label="Yes" value="yes"></v-radio>
 
                         <v-radio label="No" value="no"></v-radio>
@@ -286,14 +340,46 @@
                       <b class="font-weight-bold textSize">FIR Date</b>
                       <span class="red--text">*</span>
                     </label>
-                    <v-text-field
-                      class="input"
-                      label="Enter..."
-                      prepend-inner-icon="mdi-calendar"
-                      solo
-                      dense
-                      outlined
-                    ></v-text-field>
+                    <v-menu
+                      ref="menu"
+                      v-model="menu"
+                      :close-on-content-click="false"
+                      :return-value.sync="date"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="date"
+                          placeholder="DD/MM/YYYY"
+                          class="form-control rounded-0"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                          solo
+                          dense
+                          outlined
+                        >
+                          <template v-slot:prepend-inner>
+                            <v-icon class="iconstyle"> mdi-calendar </v-icon>
+                          </template>
+                        </v-text-field>
+                      </template>
+                      <v-date-picker v-model="date" no-title scrollable>
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="menu = false">
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="$refs.menu.save(date)"
+                        >
+                          OK
+                        </v-btn>
+                      </v-date-picker>
+                    </v-menu>
                   </v-flex>
 
                   <v-flex class="form-group ma-3">
@@ -413,11 +499,15 @@
                     <v-text-field
                       class="input"
                       label="Enter..."
-                      prepend-inner-icon="mdi-phone"
+                      type="Number"
                       solo
                       dense
                       outlined
-                    ></v-text-field>
+                    >
+                      <template v-slot:prepend-inner>
+                        <v-icon class="iconstyle"> mdi-phone </v-icon>
+                      </template>
+                    </v-text-field>
                   </v-flex>
                 </v-layout>
 
@@ -434,7 +524,11 @@
                       solo
                       dense
                       outlined
-                    ></v-text-field>
+                    >
+                      <template v-slot:prepend-inner>
+                        <v-icon class="iconstyle"> mdi-email </v-icon>
+                      </template>
+                    </v-text-field>
                   </v-flex>
 
                   <v-flex class="form-group ma-3">
@@ -582,5 +676,18 @@ export default {
   width: 240px;
   margin: 0px 10px;
   border-radius: 0;
+}
+#card3 {
+  border: 1px solid gray;
+}
+.iconstyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #c1c8cc;
+  background-color: #f7f7f7;
+  height: 40px;
+  width: 40px;
+  margin-left: -12px;
 }
 </style>

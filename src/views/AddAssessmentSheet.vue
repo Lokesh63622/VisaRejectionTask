@@ -5,7 +5,7 @@
         <v-btn icon>
           <v-icon color="#20B2AA" large>mdi-arrow-left-circle</v-icon>
         </v-btn>
-        <p class="text-h6 ml-5 mt-3 white--text headColour">
+        <p class="text-h5  ml-5 mt-3 white--text headColour" style="font-size:16px ;">
           Add Assessment Sheet
         </p>
         <v-spacer></v-spacer>
@@ -20,7 +20,7 @@
       <!-- -------------------BASIC DETAILS-------------------------------- -->
       <div class="expansion-panel-container">
         <div class="expansion-panel-header" @click="isToggle = !isToggle">
-          <div>Basic Details</div>
+          <div style="font-size: 14px;">Basic Details</div>
           <v-spacer></v-spacer>
 
           <div @click="isToggle = !isToggle">
@@ -36,7 +36,7 @@
             <v-layout wrap class="pt-4 form-group -container">
               <v-flex class="form-group ma-3">
                 <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
+                  <b class="font-weight-bold" style="font-size: 13px"
                     >Settlement Type</b
                   >
                   <span class="red--text">*</span>
@@ -53,7 +53,7 @@
 
               <v-flex class="form-group ma-3">
                 <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
+                  <b class="font-weight-bold" style="font-size: 13px"
                     >Claim Payment Type</b
                   >
                   <span class="red--text">*</span>
@@ -69,7 +69,7 @@
               </v-flex>
               <v-flex class="form-group ma-3">
                 <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
+                  <b class="font-weight-bold" style="font-size: 13px"
                     >Transaction Type</b
                   >
                   <span class="red--text">*</span>
@@ -84,7 +84,7 @@
               </v-flex>
               <v-flex class="form-group ma-3">
                 <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
+                  <b class="font-weight-bold" style="font-size: 13px"
                     >Country Name</b
                   >
                   <span class="red--text">*</span>
@@ -99,7 +99,7 @@
               </v-flex>
               <v-flex class="form-group ma-3">
                 <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px">
+                  <b class="font-weight-bold" style="font-size: 13px">
                     Currency Name</b
                   >
                   <span class="red--text">*</span></label
@@ -115,95 +115,70 @@
             </v-layout>
 
             <!-- ----------------------------------ROW - 2------------------------------------ -->
-            <!-- <v-layout wrap class="pt-4 form-group -container">
-              <v-flex lg2 class="form-group ma-3">
-                <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
-                    >Rate Of Exchange</b
-                  >
-                  <span class="red--text">*</span>
-                </label>
-                <v-text-field
-                  class="input"
-                  label="Enter..."
-                  solo
-                  dense
-                  outlined
-                  :counter="50"
-                ></v-text-field>
-              </v-flex>
-
-              <v-flex lg2 class="form-group ma-3">
-                <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
-                    >Rate Of Exchange Date</b
-                  >
-                  <span class="red--text">*</span>
-                </label>
-                <v-text-field
-                  class="input"
-                  label="Enter..."
-                  solo
-                  dense
-                  outlined
-                  :counter="50"
-                ></v-text-field>
-              </v-flex>
-              <v-flex lg2 class="form-group ma-3">
-                <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
-                    >ROE Updated Manually</b
-                  >
-                  <span class="red--text">*</span>
-                </label>
-                <v-text-field
-                  class="input"
-                  label="Enter..."
-                  solo
-                  dense
-                  outlined
-                ></v-text-field>
-              </v-flex>
-            </v-layout> -->
 
             <v-layout>
-              <v-card class="vcard rounded-0"  elevation="0">
+              <v-card class="vcard rounded-0" elevation="0">
                 <label class="subtitle-2"
-                  ><b class="font-weight-bold textSize">
-                    Rate Of Exchange </b
+                  ><b class="font-weight-bold " style="font-size: 13px"> Rate Of Exchange </b
                   ><span class="red--text">*</span></label
                 >
                 <v-text-field
                   class="input"
                   solo
                   outlined
-                 disabled
+                  disabled
                   dense
                   label="Enter..."
                 ></v-text-field>
               </v-card>
 
-  <v-card class="vcard rounded-0"  elevation="0">
+              <v-card class="vcard rounded-0" elevation="0">
                 <label class="subtitle-2"
-                  ><b class="font-weight-bold textSize">
+                  ><b class="font-weight-bold " style="font-size: 13px">
                     Rate Of Exchange Date</b
                   ><span class="red--text">*</span></label
                 >
-                <v-text-field
-                disabled
-               prepend-inner-icon="mdi-calendar "
-                  class="input"
-                  solo
-                  outlined
-                 
-                  dense
-                  label="Enter..."
-                ></v-text-field>
+                <v-menu
+                  ref="menu"
+                  v-model="menu"
+                  :close-on-content-click="false"
+                  :return-value.sync="date"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="auto"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="date"
+                      placeholder="DD/MM/YYYY"
+                      class="form-control rounded-0"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      solo
+                      dense
+                      outlined
+                    >
+                      <template v-slot:prepend-inner>
+                        <v-icon class="iconstyle"> mdi-calendar </v-icon>
+                      </template>
+                    </v-text-field>
+                  </template>
+                  <v-date-picker v-model="date" no-title scrollable>
+                    <v-spacer></v-spacer>
+                    <v-btn text color="primary" @click="menu = false">
+                      Cancel
+                    </v-btn>
+                    <v-btn text color="primary" @click="$refs.menu.save(date)">
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
               </v-card>
 
-              <v-card class="vcard rounded-0"  elevation="0">
+              <v-card class="vcard rounded-0" elevation="0">
                 <label class="subtitle-2"
-                  ><b class="font-weight-bold textSize">
+                  ><b class="font-weight-bold " style="font-size: 13px">
                     ROE Updated Manually </b
                   ><span class="red--text">*</span></label
                 >
@@ -225,7 +200,7 @@
     <template>
       <div class="expansion-panel-container">
         <div class="expansion-panel-header" @click="isToggle1 = !isToggle1">
-          <div>Amount Details</div>
+          <div style="font-size: 14px;">Amount Details</div>
           <v-spacer></v-spacer>
 
           <div>
@@ -242,7 +217,7 @@
               <!-- ------------------------------ROW -1 ------------------------------ -->
               <v-flex class="form-group ma-2">
                 <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
+                  <b class="font-weight-bold" style="font-size: 13px"
                     >Deductible Amount</b
                   >
                 </label>
@@ -257,7 +232,7 @@
 
               <v-flex class="form-group ma-2">
                 <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px">Copay%</b>
+                  <b class="font-weight-bold" style="font-size: 13px">Copay%</b>
                 </label>
                 <v-text-field
                   class="input"
@@ -269,7 +244,7 @@
               </v-flex>
               <v-flex class="form-group ma-2">
                 <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
+                  <b class="font-weight-bold" style="font-size: 13px"
                     >Claimed Amount</b
                   >
                 </label>
@@ -283,7 +258,7 @@
               </v-flex>
               <v-flex class="form-group ma-2">
                 <label class="form-label">
-                  <b class="font-weight-bold" style="font-size: 14px"
+                  <b class="font-weight-bold" style="font-size: 13px"
                     >Amount Payable</b
                   >
                 </label>
@@ -298,7 +273,7 @@
               </v-flex>
               <v-flex class="form-group ma-2">
                 <label class="form-label"
-                  ><b class="font-weight-bold" style="font-size: 14px"
+                  ><b class="font-weight-bold" style="font-size: 13px"
                     >Net Payable</b
                   >
                 </label>
@@ -320,7 +295,7 @@
     <template>
       <div class="expansion-panel-container">
         <div class="expansion-panel-header" @click="isToggle2 = !isToggle2">
-          <div>Non- Payable Expanses</div>
+          <div style="font-size: 14px;">Non- Payable Expanses</div>
           <v-spacer></v-spacer>
 
           <div>
@@ -426,7 +401,7 @@
                 <!-- ------------------------------ROW -1 ------------------------------ -->
                 <v-flex lg2 class="form-group ma-2">
                   <label class="form-label">
-                    <b class="font-weight-bold" style="font-size: 14px"
+                    <b class="font-weight-bold" style="font-size: 13px"
                       >Total Non-Payable Amount</b
                     >
                   </label>
@@ -562,9 +537,19 @@ export default {
   border-left: 1px solid #c1c8cc;
   height: 20px;
 }
-.vcard{
-  width:240px;
-  margin:0px 10px;
-  border-radius:none;
+.vcard {
+  width: 240px;
+  margin: 0px 10px;
+  border-radius: none;
+}
+.iconstyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #c1c8cc;
+  background-color: #f7f7f7;
+  height: 40px;
+  width: 40px;
+  margin-left: -12px;
 }
 </style>

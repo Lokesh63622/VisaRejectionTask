@@ -2,7 +2,7 @@
   <div>
     <v-app-bar color="#10242B" dense dark flat app>
       <v-btn icon>
-       <v-icon color="#20B2AA"  large >mdi-arrow-left-circle</v-icon>
+        <v-icon color="#20B2AA" large>mdi-arrow-left-circle</v-icon>
       </v-btn>
 
       <v-toolbar-title>Claim Processing</v-toolbar-title>
