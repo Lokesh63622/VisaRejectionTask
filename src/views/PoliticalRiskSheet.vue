@@ -44,7 +44,7 @@
       </div>
     </div>
     <div>
-<v-data-table
+      <v-data-table
         id="table"
         hide-default-footer
         disable-sort
@@ -58,16 +58,13 @@
                 >mdi-dots-vertical</v-icon
               >
             </template>
-            <v-list  v-for="link in links"
-                :key="link.text"
-              style="border:1px solid #C1C8CC;" >
-              <v-list-item
-                style="min-height: 20px; width:130px;"
-              >
-                <template
-                  v-if="link.text === 'Modify'"
-                   
-                >
+            <v-list
+              v-for="link in links"
+              :key="link.text"
+              style="border: 1px solid #c1c8cc"
+            >
+              <v-list-item style="min-height: 20px; width: 130px">
+                <template v-if="link.text === 'Modify'">
                   <v-icon class="pr-3">mdi-{{ link.icon }}</v-icon>
                   <v-list-item-title class="teal--text">{{
                     link.text
@@ -220,7 +217,7 @@ export default {
           width: 200,
         },
       ],
-    links: [
+      links: [
         { icon: "eye", text: "View" },
         { icon: "pencil-outline", text: "Modify" },
       ],
@@ -230,25 +227,22 @@ export default {
 };
 </script>
 
-<style >
+<style>
 #tabl.v-data-table.tbody.td {
   border: 1px solid;
 }
 
-.v-data-table-header tr{
-  background-color:#23B1A9;
- 
+.v-data-table-header tr {
+  background-color: #23b1a9;
 }
-.v-data-table-header tr th{
- border:1px solid #C1C8CC;
- font-size:14px;
- font-weight:bold
+.v-data-table-header tr th {
+  border: 1px solid #c1c8cc;
+  font-size: 14px;
+  font-weight: bold;
 }
-/* .kar{
-  border:1px solid black
-} */
-.v-data-table__wrapper table tbody tr td{
-   border-left:1px solid #C1C8CC;
-   height:20px
+
+.v-data-table__wrapper table tbody tr td {
+  border-left: 1px solid #c1c8cc;
+  height: 20px;
 }
 </style>

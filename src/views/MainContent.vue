@@ -2,13 +2,11 @@
   <div>
     <div class="mt-3">
       <div class="grey d-flex lighten-3">
-        <p class="align-center font-weight-bold  mt-3 mx-5">
+        <p class="align-center font-weight-bold mt-3 mx-5">
           Claim Number - 4340002739
         </p>
         <v-divider vertical class="my-2"></v-divider>
-        <b class="red--text font-weight-bold darken-3 mt-3 mx-5"
-          >NEW CLAIM</b
-        >
+        <b class="red--text font-weight-bold darken-3 mt-3 mx-5">NEW CLAIM</b>
         <v-spacer></v-spacer>
         <p class="blue--text mt-3 mr-5">View Details</p>
       </div>
@@ -42,7 +40,9 @@
           <div style="border: 1px solid grey">
             <div style="background: #1ebbd9" height="30" @click="show = !show">
               <div class="d-flex align-center mx-5">
-                <b class="white--text ma-3" style="font-size: 14px;">Basic Details</b>
+                <b class="white--text ma-3" style="font-size: 14px"
+                  >Basic Details</b
+                >
                 <v-spacer></v-spacer
                 ><v-icon class="white--text" v-show="show"
                   >mdi-plus-box-outline</v-icon
@@ -114,27 +114,6 @@
                         </v-btn>
                       </v-date-picker>
                     </v-menu>
-                    <!-- <label class="form-label">
-                      <b class="font-weight-bold textSize">
-                        Visa Application Submission Date
-                      </b>
-                      <span class="red--text">*</span>
-                    </label>
-                    <template>
-                      <v-text-field
-                        class="input"
-                       
-                        label="DD/MM/YYYY"
-                        solo
-                        prepend-inner-icon="mdi-calendar "
-                        dense
-                        outlined
-                      >
-                        <template v-slot:prepend-inner>
-                          <v-icon class="iconstyle"> mdi-calendar </v-icon>
-                        </template>
-                      </v-text-field>
-                    </template> -->
                   </v-flex>
 
                   <v-flex class="form-group ma-3">
@@ -202,7 +181,7 @@
                   <v-card class="vcard rounded-0" id="card2" elevation="0">
                     <label class="subtitle-2"
                       ><b class="font-weight-bold textSize">
-                        is This An Accident Case? </b
+                        Is This An Accident Case? </b
                       ><span class="red--text">*</span></label
                     >
                     <v-select
@@ -232,7 +211,9 @@
               @click="show1 = !show1"
             >
               <div class="d-flex align-center mx-5">
-                <b class="white--text ma-3" style="font-size: 14px;">Accident Details</b>
+                <b class="white--text ma-3" style="font-size: 14px"
+                  >Accident Details</b
+                >
                 <v-spacer></v-spacer
                 ><v-icon class="white--text" v-show="show1"
                   >mdi-plus-box-outline</v-icon
@@ -341,8 +322,8 @@
                       <span class="red--text">*</span>
                     </label>
                     <v-menu
-                      ref="menu"
-                      v-model="menu"
+                      ref="menu1"
+                      v-model="menu1"
                       :close-on-content-click="false"
                       :return-value.sync="date"
                       transition="scale-transition"
@@ -351,7 +332,7 @@
                     >
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
-                          v-model="date"
+                          v-model="date1"
                           placeholder="DD/MM/YYYY"
                           class="form-control rounded-0"
                           readonly
@@ -366,15 +347,15 @@
                           </template>
                         </v-text-field>
                       </template>
-                      <v-date-picker v-model="date" no-title scrollable>
+                      <v-date-picker v-model="date1" no-title scrollable>
                         <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="menu = false">
+                        <v-btn text color="primary" @click="menu1 = false">
                           Cancel
                         </v-btn>
                         <v-btn
                           text
                           color="primary"
-                          @click="$refs.menu.save(date)"
+                          @click="$refs.menu1.save(date1)"
                         >
                           OK
                         </v-btn>
@@ -619,9 +600,16 @@ export default {
     return {
       show: false,
       show1: false,
+    
       b: 0,
+      menu:false,
+      date:'',
+      menu1:false,
+      date1:'',
+     
     };
   },
+
   // methods: {
   //   display() {
   //     console.log("function calling");

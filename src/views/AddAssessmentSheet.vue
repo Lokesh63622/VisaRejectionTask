@@ -449,6 +449,8 @@ export default {
       isToggle: false,
       isToggle1: false,
       isToggle2: true,
+      data:"",
+      menu:false,
       headers: [
         {
           text: "Serial Number",
